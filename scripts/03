@@ -1,0 +1,17 @@
+echo "Server status :"
+sudo service ssh status | grep "Active"
+echo "Serive infos :"
+ifconfig | grep "inet " | head -n 1
+echo "\nServer is down, do you want to start it ? yes/no\n"
+read rep
+if [ "$rep" == "yes" ]
+then
+	sudo service ssh start
+	echo "\nStart server"
+elif [ "$rep" == "no" ]
+then
+	echo "\nServer OFF"
+else
+	echo "wrong character\n"
+	echo $rep
+fi
