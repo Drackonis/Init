@@ -1,17 +1,17 @@
+var1=inactive;
 echo "Server status :"
-sudo service ssh status | grep "Active"
-echo "Serive infos :"
-ifconfig | grep "inet " | head -n 1
-echo "\nServer is down, do you want to start it ? yes/no\n"
-read rep
-if [ "$rep" == "yes" ]
+sudo service ssh status | awk '/Active/{printf $2}' 
+tmp="$(sudo service ssh status | awk '/Active/{printf $2}')"
+echo "\nService infos :"
+ifconfig | grep "inet " | head -n 1 | awk '/inet/{print $2}'
+if [ "$tmp" = "$var1" ];
 then
-	sudo service ssh start
-	echo "\nStart server"
-elif [ "$rep" == "no" ]
-then
-	echo "\nServer OFF"
-else
-	echo "wrong character\n"
-	echo $rep
+while true; do
+	read -p "Server is off, do you want to start it ? " yn
+	case $yn in
+		[Yy]* ) sudo service ssh start; echo "Server status :";sudo service ssh status | awk '/Active/{printf $2}';echo "\n";break;; 
+		[Nn]* ) echo "Server OFF";exit;;
+		* ) echo "Please answer y/n.";;
+	esac
+done
 fi
