@@ -1,1 +1,1 @@
-pidof sshd
+sudo /etc/init.d/ssh status | grep PID
