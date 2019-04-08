@@ -1,1 +1,1 @@
-arp -a | awk '/en0/{print $2}' |  cut -d '(' -f2 | cut -d ')' -f1
+ifconfig en0 | awk /inet/'{print $2}'

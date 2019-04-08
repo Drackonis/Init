@@ -1,3 +1,1 @@
-Il faut modifier le fichier /etc/hosts et ajouter :
-
-46.19.122.85  intra.42.fr
+sudo echo "46.19.122.85  intra.42.fr" >> /etc/hosts

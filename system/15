@@ -1,1 +1,1 @@
-pkill tail -f
+sudo kill $(jobs -p)
