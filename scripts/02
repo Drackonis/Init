@@ -1,1 +1,2 @@
+sudo kill $1
 sudo userdel $1
